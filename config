@@ -12,7 +12,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-  font pango:zig 15
+  font pango:zig 19
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -29,7 +29,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # exec --no-startup-id /tmp/blk
 
-exec --no-startup-id "st"
+# exec --no-startup-id "st"
 # for_window [class="st", type="^((?!ST Preferences).)*$"] move scratchpad, move position 0 0, resize set 1920x1080
 # bindsym F1 [class="St"] scratchpad show
 
@@ -55,6 +55,8 @@ bindsym $mod+b exec "surf duckduckgo.com"
 
 # screenshots! (dependencies xfce4-screenshooter)
 bindsym Print exec "flameshot gui"
+bindsym Shift+Print exec "flameshot screen"
+bindsym Control+Print exec "flameshot Desktop"
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -63,6 +65,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
+exec_always . ~/.bin/fns
 bindsym $mod+d exec --no-startup-id dmenu_run -nb \#1d1f21 -fn zig -nf \#00b23d
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -178,6 +181,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit I3?' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Yes, shutdown' 'systemctl poweroff'"
+bindsym $mod+Shift+w exec "i3-nagbar -i warning -m 'Stop Wallpaper?' -B 'Yes!' 'killall xwinwrap'
 for_window [class=".*"] border pixel 0
 
 # class                 border  backgr. text    indicator child_border
@@ -221,22 +226,24 @@ bindsym $mod+r mode "resize"
 bar {
         colors {
             background #1d1f21
-            statusline #484e50
             separator #062909
 
             focused_workspace #484e50 #00a100 #1d1f21
             active_workspace  #ffffff #1d1f21 #00a100
             inactive_workspace #484e50 #1d1f21 #026228
         }
-        status_command i3status
+        status_command i3status -c ~/.config/i3/status/config
         position top
 }
 
-bindsym $mod+shift+x exec i3lock -c 1d1f21
-exec_always $HOME/.config/i3/gifbg ~/.config/i3/op.gif
+bindsym $mod+shift+x exec i3lock-fancy -p -f /usr/share/fonts/Victor\ Mono\ Medium\ Italic\ Nerd\ Font\ Complete.ttf
+exec_always $HOME/.config/arandr/Mirror_1080p_4K.sh
 exec_always killall dunst
 exec_always dunst
 exec_always flameshot
-exec_always xrdb ~/.config/Xdefaults
-exec_always xmodmap ~/.config/Xmodmap
+exec_always xrdb ~/.config/i3/Xdefaults
+exec_always xmodmap ~/.config/i3/Xmodmap
 exec compton -f
+exec_always $HOME/.config/i3/gifbg ~/.config/i3/op.gif
+exec_always sleep 0.3s
+exec_always i3lock-fancy -p -f /usr/share/fonts/Victor\ Mono\ Medium\ Italic\ Nerd\ Font\ Complete.ttf
