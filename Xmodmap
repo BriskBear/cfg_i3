@@ -1,0 +1,5 @@
+!
+! Swap Caps_Lock and Control_L
+!
+clear lock
+keysym Caps_Lock = Super_L
