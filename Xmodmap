@@ -1,0 +1,7 @@
+!
+! Swap Caps_Lock and Control_L
+!
+clear lock
+
+keycode 66 = Super_L
+keycode 133 = Caps_Lock
