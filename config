@@ -52,6 +52,7 @@ floating_modifier $mod
 
 # start a lightweight web-browser
 bindsym $mod+b exec "surf duckduckgo.com"
+bindsym $mod+Shift+b exec "surf gitlab.4winds.tools"
 
 # screenshots! (dependencies xfce4-screenshooter)
 bindsym Print exec "flameshot gui"
