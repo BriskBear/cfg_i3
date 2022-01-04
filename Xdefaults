@@ -3,8 +3,7 @@ st.alpha: 0.92
 st.alphaOffset: 0.3
 
 !! Set a default font and font size as below:
-st.faceName: Canterell;
-st.faceSize: 8;
+st.faceName: Terminus-32;
 
 ! st.termname: st-256color
 ! st.borderpx: 0
