@@ -1,9 +1,10 @@
 !! Transparency (0-1):
-st.alpha: 0.81
-st.alphaOffset: 0.15
+st.alpha: 0.91
+st.alphaOffset: 0.10
 
 !! Set a default font and font size as below:
-*.font: VictorMono Nerd Font:size=18:style=Bold Italic
+!! *.font: VictorMono Nerd Font:size=18:style=Bold Italic
+*.font: Terminus:size=18:style=Bold Italic
 
 ! st.termname: st-256color
 ! st.borderpx: 2

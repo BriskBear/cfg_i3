@@ -43,12 +43,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 floating_modifier $mod
 
 # start a lightweight web-browser
-bindsym $mod+b exec "surf duckduckgo.com"
+bindsym $mod+b exec "vivaldi-stable https://duckduckgo.com/?kae=t&k5=1&kl=us-en&kay=b&kav=1&ks=t&kw=w&kbc=1&kp=-2"
+bindsym $mod+Shift+b exec "vivaldi-stable github.com/briskbear"
+bindsym $mod+Shift+o exec "vivaldi-stable https://prontonmail.ch"
+
+# Applications
+bindsym $mod+Shift+v exec "dunstify 'Viewer' 'Started!' && vncviewer localhost:0"
 
 # screenshots! (dependencies xfce4-screenshooter)
 bindsym Print exec "flameshot gui"
 bindsym Shift+Print exec "flameshot screen"
 bindsym Control+Print exec "flameshot Desktop"
+bindsym $mod+n exec "st -e nvim"
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -75,9 +81,9 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
@@ -87,9 +93,9 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
@@ -121,27 +127,30 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-assign [ class="Brave-browser" ] $ws3
-set $ws4 "4: "
-assign [ class="Atom" ] $ws4
-set $ws5 "5: "
-assign [ class="Steam" ] $ws5
-set $ws6 "6: "
-set $ws7 "7: "
-assign [ class="Thunar" ] $ws7
-set $ws8 "8: "
-set $ws9 "9: "
-assign [ class="TelegramDesktop" ] $ws9
-assign [ class="discord" ] $ws9
+set $ws1  "1: "
+set $ws2  "2: "
+set $ws3  "3: "
+set $ws4  "4: "
+set $ws5  "5: "
+set $ws6  "6: "
+set $ws7  "7: "
+set $ws8  "8: "
+set $ws9  "9: "
 set $ws10 "0: "
-assign [ class="VLC media player" ] $ws10
 set $ws11 "11: "
-assign [ class="Gimp" ] $ws11
+
+assign [ class="Vivaldi-stable"    ] $ws3
+assign [ class="Atom"             ] $ws4
+assign [ class="Steam"            ] $ws5
+assign [ class="Thunar"           ] $ws7
+assign [ class="TelegramDesktop"  ] $ws9
+assign [ class="discord"          ] $ws9
+assign [ class="VLC media player" ] $ws10
+assign [ class="Gimp"             ] $ws11
 
 for_window [ class="battle.net.exe" ] floating enable
+for_window [ class="Engrampa"       ] floating enable
+for_window [ class="Gnome-disks"    ] floating enable
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -168,12 +177,16 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+Control+1 move container to workspace number $ws11
-# reload the configuration file bindsym $mod+Shift+c reload restart i3 inplace (preserves your layout/session, can be used to upgrade i3) bindsym $mod+Shift+r restart
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit I3?' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Yes, shutdown' 'systemctl poweroff'"
 bindsym $mod+Shift+w exec "i3-nagbar -i warning -m 'Stop Wallpaper?' -B 'Yes!' 'killall xwinwrap'
 for_window [class=".*"] border pixel 0
+for_window [class="St" floating_from="user"] resize set 1500 480, border pixel 1
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #004800 #011e03 #26c06d #00a100   #026228
@@ -181,7 +194,6 @@ client.focused_inactive #333333 #062909 #678472 #484e50   #5f676a
 client.unfocused        #333333 #678472 #026228 #292d2e   #222222
 client.urgent           #2f343a #678472 #ffffff #900000   #900000
 client.placeholder      #000000 #678472 #ffffff #000000   #0c0c0c
-
 client.background       #1d1f21
 
 # resize window (you can also use the mouse for that)
