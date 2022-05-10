@@ -3,7 +3,7 @@ st.alpha: 0.92
 st.alphaOffset: 0.3
 
 !! Set a default font and font size as below:
-st.faceName: Terminus-32;
+st.faceName: Terminus-18;
 
 ! st.termname: st-256color
 ! st.borderpx: 0
@@ -110,19 +110,20 @@ st.faceName: Terminus-32;
 /* *.color15:	#fdf6e3 */
 
 !! xterm
-*.color0:   #000000 
-*.color1:   #cd0000 
-*.color2:   #00cd00 
-*.color3:   #cdcd00 
-*.color4:   #0000cd 
-*.color5:   #cd00cd 
-*.color6:   #00cdcd 
-*.color7:   #e5e5e5 
-*.color8:   #4d4d4d 
-*.color9:   #ff0000 
-*.color10:  #00ff00 
-*.color11:  #ffff00 
-*.color12:  #0000ff 
-*.color13:  #ff00ff 
-*.color14:  #00ffff 
-*.color15:  #aabac8 
+*.cursorColor: #026228
+*.color0:      #000000
+*.color1:      #cd5500
+*.color2:      #00cd00
+*.color3:      #cdcd00
+*.color4:      #00ad6d
+*.color5:      #cd00cd
+*.color6:      #00cdcd
+*.color7:      #e5e5e5
+*.color8:      #4d4d4d
+*.color9:      #ff0000
+*.color10:     #00ff00
+*.color11:     #ffff00
+*.color12:     #adadef
+*.color13:     #ff00ff
+*.color14:     #00ffff
+*.color15:     #aabac8

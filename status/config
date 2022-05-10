@@ -12,7 +12,7 @@ general {
 }
 
 order += "wireless _first_"
-order += "battery all"
+# order += "battery all"
 order += "disk /"
 order += "load"
 order += "memory"
@@ -23,9 +23,9 @@ wireless _first_ {
         format_down = "W: down"
 }
 
-battery all {
-        format = "%status %percentage %remaining"
-}
+# battery all {
+#         format = "%status %percentage %remaining"
+# }
 
 disk "/" {
         format = "%avail"

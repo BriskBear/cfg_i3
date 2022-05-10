@@ -43,16 +43,20 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
   gaps inner 15
   gaps outer -9
 
+set $mon_left DP-1
+set $mon_right DVI-I-1
+
 # Only enable gaps with multiple windows
   smart_gaps on
-# border_radius 6
+  border_radius 5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a lightweight web-browser
-bindsym $mod+b exec "surf duckduckgo.com"
-bindsym $mod+Shift+b exec "surf gitlab.4winds.tools"
+bindsym $mod+b exec "vivaldi-stable https://duckduckgo.com/?kae=t&ks=t&k5=1&kbc=1&kw=w&kp=-2&kav=1&kl=us-en&kay=b"
+bindsym $mod+Control+b exec "vivaldi-stable gitlab.4winds.tools"
+bindsym $mod+Control+o exec "vivaldi-stable https://outlook.office.com"
 
 # screenshots! (dependencies xfce4-screenshooter)
 bindsym Print exec "flameshot gui"
@@ -129,20 +133,28 @@ bindsym $mod+a focus parent
 
 set $ws1 "1: "
 set $ws2 "2: "
+assign [ class="St" ] $ws2
+workspace $ws2 output $mon_left
 set $ws3 "3: "
 assign [ class="Brave-browser" ] $ws3
+assign [ class="Vivaldi-stable" ] $ws3
+workspace $ws3 output $mon_left
 set $ws4 "4: "
 assign [ class="jetbrains-rubymine" ] $ws4
 for_window [ class="jetbrains-rubymine" title="win0" ] floating enable
-set $ws5 "5: "
+workspace $ws4 output $mon_right
+set $ws5 "5: "
 assign [ class="remmina" ] $ws5
+for_window [ class="remmina" ] layout tabbed
 set $ws6 "6: "
-set $ws7 "7: "
+set $ws7 "7: ﭧ"
 assign [ class="Thunar" ] $ws7
 set $ws8 "8: "
 set $ws9 "9: "
 assign [ class="TelegramDesktop" ] $ws9
+workspace $ws9 output $mon_right
 assign [ class="discord" ] $ws9
+assign [ class="Vivaldi-stable" title="Blank Page - Vivaldi"] $ws9
 set $ws10 "0: "
 assign [ class="VLC media player" ] $ws10
 set $ws11 "11: "
@@ -182,14 +194,20 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit I3?' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'Reboot?' -B 'Yes' 'systemctl reboot -i'"
 for_window [class=".*"] border pixel 0
+for_window [class="St" floating_from="user"] border pixel 1, resize set 1200 480
 
+# move focused workspace between monitors
+bindsym $mod+Control+greater move workspace to output right
+bindsym $mod+Control+less move workspace to output left
+bindsym $mod+Control+r exec "rubymine"
+
+hide_edge_borders smart
 # class                 border  backgr. text    indicator child_border
 client.focused          #004800 #011e03 #26c06d #00a100   #026228
 client.focused_inactive #333333 #062909 #678472 #484e50   #5f676a
 client.unfocused        #333333 #678472 #026228 #292d2e   #222222
 client.urgent           #2f343a #678472 #ffffff #900000   #900000
 client.placeholder      #000000 #678472 #ffffff #000000   #0c0c0c
-
 client.background       #1d1f21
 
 # resize window (you can also use the mouse for that)
@@ -236,13 +254,16 @@ bar {
         font pango:fantasque_mono 15
 }
 
-bindsym $mod+shift+x exec i3lock-fancy -p -f /usr/share/fonts/fantasque_mono.ttf
+bindsym $mod+Shift+x exec i3lock-fancy -p -f /usr/share/fonts/fantasque_mono.ttf
 exec_always xrdb ~/.config/i3/Xdefaults
 exec_always xmodmap ~/.config/i3/Xmodmap
 exec_always $HOME/.config/i3/scrn/default.sh
-exec_always feh --bg-fill $HOME/data/img/wind_paper.jpg
+exec_always feh --bg-fill $HOME/data/img/wind_paper.png
 exec compton -f
-exec_always killall dunst
-exec_always dunst &
-exec_always flameshot
+exec dunst
+exec flameshot
+exec_always numlockx on
+exec i3-sensible-terminal
+exec vivaldi-stable outlook.office.com teams.office.com
+exec rubymine
 exec_always i3lock-fancy -p -f /usr/share/fonts/fantasque_mono.ttf
