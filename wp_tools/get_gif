@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -o $HOME/.config/i3/wp_tools/op.gif -L https://drive.proton.me/urls/NCC0A10MZG#9HYlzuwXz5Xg
