@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+[[  $(ps -ae|ag polybar) ]] && killall polybar
+
+polybar main &
