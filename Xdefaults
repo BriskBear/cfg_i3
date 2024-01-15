@@ -3,7 +3,8 @@ st.alpha: 0.81
 st.alphaOffset: 0.15
 
 !! Set a default font and font size as below:
-*.font: VictorMono Nerd Font:size=18:style=Bold Italic
+! *.font: Victor Mono:size=12:style=Bold Italic
+! *.font2: Symbols NFM:size=36:style=2048-em
 
 ! st.termname: st-256color
 ! st.borderpx: 2
